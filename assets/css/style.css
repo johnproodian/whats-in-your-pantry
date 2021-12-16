@@ -8,10 +8,10 @@
 
 #ingredient-items {
     position: relative;
+    align-items: center;
 }
 
 #search-btn {
     position: absolute;
     bottom: 0;
-    left: 40%;
 }
