@@ -4,35 +4,71 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Document</title>
 </head>
 <body>
     <header>
-        <h1>What's In Your Pantry?</h1>
+        <section class="hero is-primary">
+            <div class="hero-body">
+                <p class="title">
+                    What's in your pantry?
+                </p>
+                <p class="subtitle">
+                    Let us help you out.
+                </p>
+            </div>
+        </section>
     </header>
 
     <main>
-        <!-- search form and ingredients  -->
-        <div>
-            <form>
-                <input type="text">
-                <button></button>
-            </form>
-           <div>
-
-           </div>
+        <div class="columns is-9 is-centered pt-5" id="column-container">
+            <!--chosen ingredients column-->
+            <div class="column is-3 has-background-grey m-3 is-justify-content-flex-start " id="ingredient-items">
+                <h3 class="title is-3">Ingredients</h3>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="content">
+                            <div class="control">
+                                <input class="input" type="text" placeholder="Type an ingredient here!"></input>
+                                <button class="button is-light" type="button" id="submit-btn">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--recipe results column-->
+            <div class="column is-3 has-background-grey-light m-3 is-justify-content-flex-start" id="recipe-results">
+                <h3 class="title is-3">Recipe Options</h3>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="content">
+                            Recipe previews will go here
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--expanded recipe column-->
+            <div class="column is-3 has-background-grey-lighter m-3 is-justify-content-flex-start" id="recipe-expanded">
+                <h3 class="title is-3">Chosen Recipe</h3>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="content">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, eveniet ratione beatae iure molestias aperiam, quod officia harum cum dolore reprehenderit accusantium? Magnam quia illum assumenda accusamus enim, voluptatibus cumque.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- recipe results list -->
-        <div>
 
-        </div>
-
-        <!-- expanded recipe -->
-        <div>
-
-        </div>
     </main>
-    
+
+    <script src="./assets/js/script.js/"></script>
 </body>
+
+<footer>
+
+</footer>
 </html>
