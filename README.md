@@ -9,3 +9,14 @@ AS A Home Cook I WANT to be able to find delicious recipes that utilize the rema
 
 GIVEN I will INPUT the ingredients I currently have into the site, THEN I will receive recipes that contain those ingredients. 
 
+--
+
+GIVEN I am on the What's In Your Pantry application,
+WHEN I enter ingredients into the submit/search bar and submit, 
+THEN that ingredient is added to the list of ingredient search criteria below it.
+
+WHEN I hit (2nd?) enter/search,
+THEN I am presented (in the middle column) with recipe titles that use (only?) those ingredients.
+
+WHEN I click on one of those recipes,
+THEN I am presented with the full recipe for that title in the third column.
