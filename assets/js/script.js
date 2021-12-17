@@ -7,8 +7,12 @@ var recipeResultsContainer = document.querySelector("#recipe-results");
 
 
 
-var displayIngredients = function(ingredientInputs) {
-    var ingredientInputs = ["apples"];
+var displayIngredients = function(ingredientInputEl) {
+    var ingredientInputEl = document.getElementById("ingredient-input").value
+    
+    var ingredientInputs = [];
+    ingredientInputs.push(ingredientInputEl);
+    console.log(ingredientInputs);
 
     var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=0195b7fd3cb14afbaa629e0c06b3d5b8&ingredients=" + ingredientInputs;
 
