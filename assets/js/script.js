@@ -7,9 +7,16 @@ var recipeSummaries = ["chicken parmesan", "pancakes", "chicken strips", "mac 'n
 
 var recipeResultsContainer = document.querySelector("#recipe-results");
 
-var ingredientInputs = ["apple", "flour", "egg"];
-ingredientInputs.toString();
-console.log("stringified: " + ingredientInputs)
+var ingredientInputs = [];
+
+var cardDivEl = document.createElement("div")
+var cardContentDivEl = document.createElement("div")
+var contentDivEl = document.createElement("div")
+
+var recipeSummaryBtns = [];
+
+var recipeIds = [];
+
 
 // changed name from 'displayIngredients' to 'ingredientInputHandler'
 var ingredientInputHandler = function(ingredientInputEl) {
@@ -21,25 +28,10 @@ var ingredientInputHandler = function(ingredientInputEl) {
     ingredientInputs.push(ingredientInputEl);
     console.log(ingredientInputs);
 
-    // var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=0195b7fd3cb14afbaa629e0c06b3d5b8&ingredients=" + ingredientInputs;
-
-    // fetch(apiUrl)
-    //     .then(function(response) {
-    //         if (response.ok) {
-    //             response.json()
-    //                 // call the displayRecipeSummaries w/ data array
-    //                 .then(function(data) {
-    //                     displayRecipeSummaries(data);
-    //                 })
-                
-    //         } else (
-    //             alert("Didn't work!")
-    //         );
-    //     }
-    //     )
+    // moved fetch(api) stuff to getRecipes below
 }
 
-var getRecipes = function() {
+var getRecipes = function(displayFunction) {
     // take ingredient array and convert it to single string
     ingredientInputs.toString();
 
@@ -53,7 +45,7 @@ var getRecipes = function() {
                 response.json()
                     // call the displayRecipeSummaries w/ data array
                     .then(function(data) {
-                        displayRecipeSummaries(data);
+                        displayFunction(data);
                     })
                 
             } else (
@@ -64,17 +56,13 @@ var getRecipes = function() {
 }
 
 
-
-
-
 var displayRecipeSummaries = function(recipeSummariesArray) {
     // change recipeSummaries to parameter that be response data object when called
     for (i = 0; i < recipeSummariesArray.length; i++) {
-        var cardDivEl = document.createElement("div")
-        cardDivEl.className = "card";
-        var cardContentDivEl = document.createElement("div")
+        // added 'summary-card' to the class so that the summary cards could be picked out separately from the other cards
+        cardDivEl.className = "card summary-card";
+        cardDivEl.setAttribute("id", recipeSummariesArray[i].id)
         cardContentDivEl.className = "card-content";
-        var contentDivEl = document.createElement("div")
         contentDivEl.className = "content";
 
         // create an image tag, set attribute (src), and append it to the content Div
@@ -88,10 +76,29 @@ var displayRecipeSummaries = function(recipeSummariesArray) {
         cardContentDivEl.appendChild(imgTag);
         cardDivEl.appendChild(cardContentDivEl);
         recipeResultsContainer.appendChild(cardDivEl);
+
+        var recipeSummaryBtn = document.querySelector(".summary-card");
+        recipeSummaryBtns.push(recipeSummaryBtn);
+
+        if (recipeSummaryBtns) {
+            for (i = 0; i < recipeSummaryBtns.length; i++) {
+                recipeSummaryBtns[i].addEventListener("click", function() {
+                    getRecipes(displayChosenRecipe);
+                });
+            }
+        }
     }
 }
 
-getRecipeBtn.addEventListener("click", getRecipes);
+var displayChosenRecipe = function(event) {
+    // console.log(event);
+    // title
+    // ingredients
+    // directions
+}
+
+getRecipeBtn.addEventListener("click", function() {
+    getRecipes(displayRecipeSummaries)});
 addItemsBtn.addEventListener("click", ingredientInputHandler);
 
 
