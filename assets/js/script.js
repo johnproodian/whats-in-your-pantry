@@ -1,9 +1,9 @@
 
 
-var apiKey = "0195b7fd3cb14afbaa629e0c06b3d5b8";
+var apiKey = "ddc5bf55d47a481586f8f6a808808cad";
 var getRecipeBtn = document.querySelector("#search-btn");
 var addItemsBtn = document.querySelector("#add-btn");
-var recipeSummaries = ["chicken parmesan", "pancakes", "chicken strips", "mac 'n cheese"];
+var fullRecipe = document.querySelector("#full-recipe");
 
 var recipeResultsContainer = document.querySelector("#recipe-results");
 
@@ -31,7 +31,7 @@ var ingredientInputHandler = function(ingredientInputEl) {
     // moved fetch(api) stuff to getRecipes below
 }
 
-var getRecipes = function(displayFunction) {
+/* var getRecipes = function(displayFunction) {
     // take ingredient array and convert it to single string
     ingredientInputs.toString();
 
@@ -54,6 +54,33 @@ var getRecipes = function(displayFunction) {
         }
         )    
 }
+*/
+
+var getRecipes = function() {
+    // take ingredient array and convert it to single string
+    ingredientInputs.toString();
+
+    // make apiUrl that adds the single string ingredient variable
+    var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=ddc5bf55d47a481586f8f6a808808cad&ingredients=" + ingredientInputs;
+    
+    // fetch api and json the response
+    fetch(apiUrl)
+        .then(function(response) {
+            if (response.ok) {
+                response.json()
+                    // call the displayRecipeSummaries w/ data array
+                    .then(function(data) {
+                        displayRecipeSummaries(data);
+                    })
+                
+            } else (
+                alert("Didn't work!")
+            );
+        }
+        )
+}
+
+
 
 
 var displayRecipeSummaries = function(recipeSummariesArray) {
@@ -65,28 +92,34 @@ var displayRecipeSummaries = function(recipeSummariesArray) {
         cardContentDivEl.className = "card-content";
         contentDivEl.className = "content";
 
-        // create an image tag, set attribute (src), and append it to the content Div
-        var imgTag = document.createElement("img");
-        imgTag.setAttribute("src", recipeSummariesArray[i].image); 
-        // ***Need to size the images...
+        var recipeTitleBtn = document.createElement("button");
 
-        contentDivEl.textContent = recipeSummariesArray[i].title;
-        contentDivEl.append(imgTag);
+
+        var h2Tag = document.createElement("h2");
+        h2Tag.textContent = recipeSummariesArray[i].title;
+        recipeTitleBtn.appendChild(h2Tag);
+        recipeTitleBtn.addEventListener("click", function(){
+
+            //create elements for title, image, recipe
+
+            // give text content
+                //including for loop for ingredient ul/li
+            //setAttribute src for image
+            //append to fullRecipe
+
+
+        })
+
+        // contentDivEl.textContent = recipeSummariesArray[i].title;
+        contentDivEl.append(recipeTitleBtn);
         cardContentDivEl.appendChild(contentDivEl);
-        cardContentDivEl.appendChild(imgTag);
+        // cardContentDivEl.appendChild(imgTag);
         cardDivEl.appendChild(cardContentDivEl);
         recipeResultsContainer.appendChild(cardDivEl);
 
         var recipeSummaryBtn = document.querySelector(".summary-card");
         recipeSummaryBtns.push(recipeSummaryBtn);
 
-        if (recipeSummaryBtns) {
-            for (i = 0; i < recipeSummaryBtns.length; i++) {
-                recipeSummaryBtns[i].addEventListener("click", function() {
-                    getRecipes(displayChosenRecipe);
-                });
-            }
-        }
     }
 }
 
