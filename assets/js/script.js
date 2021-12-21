@@ -97,22 +97,8 @@ var displayRecipeSummaries = function(recipeSummariesArray) {
 
         var recipeTitleBtn = document.createElement("button");
         recipeTitleBtn.className = "recipe-btn";
-
-
-        var h2Tag = document.createElement("h2");
-        h2Tag.textContent = recipeSummariesArray[i].title;
-        recipeTitleBtn.appendChild(h2Tag);
-        recipeTitleBtn.addEventListener("click", function(){
-
-            //create elements for title, image, recipe
-
-            // give text content
-                //including for loop for ingredient ul/li
-            //setAttribute src for image
-            //append to fullRecipe
-
-
-        })
+        recipeTitleBtn.textContent = recipeSummariesArray[i].title;
+        
 
         // contentDivEl.textContent = recipeSummariesArray[i].title;
         contentDivEl.append(recipeTitleBtn);
@@ -140,7 +126,6 @@ addItemsBtn.addEventListener("click", ingredientInputHandler);
 
 contentDivEl.addEventListener("click", function(evt) {
     if (evt.target.classList.contains('recipe-btn')) {
-        debugger;
         expandedRecipeH3.textContent = "";
         // forecastH2El.textContent = "";
         // var searchCity = evt.target.innerHTML;
