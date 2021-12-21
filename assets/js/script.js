@@ -1,6 +1,6 @@
 
 
-var apiKey = "0195b7fd3cb14afbaa629e0c06b3d5b8";
+var apiKey = "8469acb96e0f4f539b6d601f5d26c5c4b8";
 var getRecipeBtn = document.querySelector("#search-btn");
 var addItemsBtn = document.querySelector("#add-btn");
 var recipeSummaries = ["chicken parmesan", "pancakes", "chicken strips", "mac 'n cheese"];
@@ -28,15 +28,19 @@ var ingredientInputHandler = function(ingredientInputEl) {
     ingredientInputs.push(ingredientInputEl);
     console.log(ingredientInputs);
 
+    
+
     // moved fetch(api) stuff to getRecipes below
 }
 
 var getRecipes = function(displayFunction) {
     // take ingredient array and convert it to single string
+
     ingredientInputs.toString();
 
     // make apiUrl that adds the single string ingredient variable
-    var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=0195b7fd3cb14afbaa629e0c06b3d5b8&ingredients=" + ingredientInputs;
+    var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=8469acb96e0f4f539b6d601f5d26c5c4&ingredients=" + ingredientInputs;
+    
     
     // fetch api and json the response
     fetch(apiUrl)
