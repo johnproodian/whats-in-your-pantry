@@ -3,6 +3,7 @@ var getRecipeBtn = document.querySelector("#search-btn");
 var addItemsBtn = document.querySelector("#add-btn");
 var recipeSummaries = ["chicken parmesan", "pancakes", "chicken strips", "mac 'n cheese"];  
 var placeholder = ["it worked!!"]
+var recipes = []
 
 var recipeResultsContainer = document.querySelector("#recipe-results");
 var ingredientContainer = document.querySelector("#ingredient-items");
@@ -49,7 +50,20 @@ var expandRecipe = function() {
     cardContentDivEl.appendChild(contentDivEl);
     cardDivEl.appendChild(cardContentDivEl);
     expandedRecipeContainer.appendChild(cardDivEl);
-    // add the expanded recipe to the localStorage for easy access
+
+      // fetch(apiUrl)
+        // .then(Response => Response.json())
+        // .then(resp => {
+        //     console.log(resp)
+        // })  => is an annonymous function, instead of function()
+
+    // Calls the information in another way
+        // async function recipes() {
+        //     const response = await fetch(apiUrl);
+        //     const resp = await response.json();
+        //     console.log(resp.name);
+        // }
+    
 }
 
 var clearElement = function(element){
@@ -59,22 +73,31 @@ var clearElement = function(element){
 
 var displayRecipeSummaries = function() {
 
-    var apiUrl = 'https://api.spoonacular.com/recipes/findByIngredients?apiKey=0195b7fd3cb14afbaa629e0c06b3d5b8&ingredients=${ingredient}' + ingredientInputs;
+    var apiKey = "0195b7fd3cb14afbaa629e0c06b3d5b8"
+    var apiUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=${ingredientInputs}`
     
     
     fetch(apiUrl)
-        .then(function(response) {
-            if (response.ok) {
-                response.json()
-                
-            } else (
-                alert("Didn't work!")
-            );
-        }
-        ).then(resp => {
-            console.log(resp)
+        .then(Response => Response.json())
+        .then(data => {
+            console.log(data);
+            recipes.push(data);
         })
+        console.log(recipes);
+        
 
+          // fetch(apiUrl)
+        // .then(Response => Response.json())
+        // .then(resp => {
+        //     console.log(resp)
+        // })  => is an annonymous function, instead of function()
+
+    // Calls the information in another way
+        // async function recipes() {
+        //     const response = await fetch(apiUrl);
+        //     const resp = await response.json();
+        //     console.log(resp.name);
+        // }
     
     
     for (i = 0; i < recipeSummaries.length; i++) {
@@ -91,18 +114,6 @@ var displayRecipeSummaries = function() {
         cardDivEl.appendChild(cardContentDivEl);
         recipeResultsContainer.appendChild(cardDivEl);
         
-        // fetch(apiUrl)
-        // .then(Response => Response.json())
-        // .then(resp => {
-        //     console.log(resp)
-        // })  => is an annonymous function, instead of function()
-
-    // Calls the information in another way
-        // async function recipes() {
-        //     const response = await fetch(apiUrl);
-        //     const resp = await response.json();
-        //     console.log(resp.name);
-        // }
     }
     
     contentDivEl.addEventListener("click", expandRecipe);
