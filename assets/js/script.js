@@ -12,11 +12,14 @@ var ingredientInputs = [];
 var cardDivEl = document.createElement("div")
 var cardContentDivEl = document.createElement("div")
 var contentDivEl = document.createElement("div")
+contentDivEl.setAttribute("id", "content")
 
 var recipeSummaryBtns = [];
 
 var recipeIds = [];
 
+var expandedRecipeDiv = document.querySelector("#recipe-expanded");
+var expandedRecipeH3 = document.getElementById("chosen-recipe");
 
 // changed name from 'displayIngredients' to 'ingredientInputHandler'
 var ingredientInputHandler = function(ingredientInputEl) {
@@ -93,6 +96,7 @@ var displayRecipeSummaries = function(recipeSummariesArray) {
         contentDivEl.className = "content";
 
         var recipeTitleBtn = document.createElement("button");
+        recipeTitleBtn.className = "recipe-btn";
 
 
         var h2Tag = document.createElement("h2");
@@ -133,5 +137,17 @@ var displayChosenRecipe = function(event) {
 getRecipeBtn.addEventListener("click", function() {
     getRecipes(displayRecipeSummaries)});
 addItemsBtn.addEventListener("click", ingredientInputHandler);
+
+contentDivEl.addEventListener("click", function(evt) {
+    if (evt.target.classList.contains('recipe-btn')) {
+        debugger;
+        expandedRecipeH3.textContent = "";
+        // forecastH2El.textContent = "";
+        // var searchCity = evt.target.innerHTML;
+
+        // storeSearch(searchCity);
+        // getCurrent(searchCity);
+    }
+})
 
 
