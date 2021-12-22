@@ -80,8 +80,28 @@ var getRecipes = function() {
         )
 }
 
+    cardContentDivEl.appendChild(contentDivEl);
+    cardDivEl.appendChild(cardContentDivEl);
+    expandedRecipeContainer.appendChild(cardDivEl);
+
+      // fetch(apiUrl)
+        // .then(Response => Response.json())
+        // .then(resp => {
+        //     console.log(resp)
+        // })  => is an annonymous function, instead of function()
+
+    // Calls the information in another way
+        // async function recipes() {
+        //     const response = await fetch(apiUrl);
+        //     const resp = await response.json();
+        //     console.log(resp.name);
+        // }
+    
 
 
+var clearElement = function(element){
+    element.innerHTML = "";
+}
 
 var displayRecipeSummaries = function(recipeSummariesArray) {
     // change recipeSummaries to parameter that be response data object when called
@@ -121,6 +141,8 @@ var displayRecipeSummaries = function(recipeSummariesArray) {
         recipeSummaryBtns.push(recipeSummaryBtn);
 
     }
+    
+    //contentDivEl.addEventListener("click", expandRecipe);
 }
 
 var displayChosenRecipe = function(event) {
