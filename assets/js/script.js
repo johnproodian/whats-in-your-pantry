@@ -79,10 +79,13 @@
 // }
 
 // Proctor Branch below
+// var storedIngredients = ["apple", "chicken", "egg"];
+// localStorage.setItem("ingredients", JSON.stringify(storedIngredients))
 
 var apiKey = "0195b7fd3cb14afbaa629e0c06b3d5b8";
 var getRecipeBtn = document.querySelector("#search-btn");
 var addItemsBtn = document.querySelector("#add-btn");
+var clearItemsBtn = document.querySelector("#clear-btn");
 var recipeTitle = [];  
 var expandedRecipe = ["Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, eveniet ratione beatae iure molestias aperiam, quod officia harum cum dolore reprehenderit accusantium? Magnam quia illum assumenda accusamus enim, voluptatibus cumque."]
 var recipes = [];
@@ -93,29 +96,81 @@ var ingredientContainer = document.querySelector("#ingredient-items");
 var expandedRecipeContainer = document.querySelector("#recipe-expanded");
 var ingredientInputs = [];
 
+var getLocalStorage = function() {
+    ingredientInputs = JSON.parse(localStorage.getItem("ingredients"));
+    if (!ingredientInputs) {
+        ingredientInputs = [];
+    } else {
+        displayLocalStorage(ingredientInputs);
+    }
+}
 
-var displayIngredients = function(ingredientInputEl) {
+var displayLocalStorage = function(storedIngredients) {
+    for (i = 0; i < ingredientInputs.length; i++) {
+        var cardDivEl = document.createElement("div");
+        cardDivEl.className = "card";
+        var cardContentDivEl = document.createElement("div");
+        cardContentDivEl.className = "card-content";
+        var contentDivEl = document.createElement("div");
+        contentDivEl.className = "content";
+        contentDivEl.textContent = storedIngredients[i];
+        // var contentXBtn = document.createElement("button");
+        // contentXBtn.className = "x-btn";
+        // contentXBtn.textContent = "X";
 
-    var ingredientInputEl = document.getElementById("ingredient-input").value
+        // contentDivEl.appendChild(contentXBtn);
+        cardContentDivEl.appendChild(contentDivEl);
+        cardDivEl.appendChild(cardContentDivEl);
+        ingredientContainer.appendChild(cardDivEl);
+    }
+}
+
+getLocalStorage();
+
+var displayIngredients = function() {
+
+    var ingredientInputEl = document.getElementById("ingredient-input").value.toLowerCase().trim();
     
-    console.log(ingredientInputEl);
-    ingredientInputs.push(ingredientInputEl);
-    console.log(ingredientInputs);
+    if (!ingredientInputEl) {
+        return;
+    } else if (!ingredientInputs.includes(ingredientInputEl)) {
+        ingredientInputs.push(ingredientInputEl);
+        localStorage.setItem("ingredients", JSON.stringify(ingredientInputs));
+        document.getElementById("ingredient-input").value = "";
+        var cardDivEl = document.createElement("div");
+        cardDivEl.className = "card";
+        var cardContentDivEl = document.createElement("div");
+        cardContentDivEl.className = "card-content";
+        var contentDivEl = document.createElement("div");
+        contentDivEl.className = "content";
+        contentDivEl.textContent = ingredientInputEl;
+        // var contentXBtn = document.createElement("button");
+        // contentXBtn.className = "x-btn";
+        // contentXBtn.textContent = "X";
 
-    var cardDivEl = document.createElement("div");
-    cardDivEl.className = "card";
-    var cardContentDivEl = document.createElement("div");
-    cardContentDivEl.className = "card-content";
-    var contentDivEl = document.createElement("div");
-    contentDivEl.className = "content";
-    contentDivEl.textContent = ingredientInputEl;
+        // contentDivEl.appendChild(contentXBtn);
 
-    cardContentDivEl.appendChild(contentDivEl);
-    cardDivEl.appendChild(cardContentDivEl);
-    ingredientContainer.appendChild(cardDivEl);
-    
-    
+        cardContentDivEl.appendChild(contentDivEl);
+        cardDivEl.appendChild(cardContentDivEl);
+        ingredientContainer.appendChild(cardDivEl);
+
+        // contentDivEl.addEventListener("click", removeIngredient);
+    }    
 };
+
+var removeItems = function() {
+    localStorage.clear();
+    location.reload();
+}
+
+// var removeIngredient = function(evt) {
+//     debugger;
+//     if (evt.target.classList.contains("x-btn")) {
+//         var index = ingredientInputs.indexOf("egg");
+//         console.log(index);
+//     }
+
+// }
 
 var expandRecipe = function() {
     //console.log(this.id);
@@ -208,5 +263,6 @@ var displayRecipeSummaries = function() {
 
 getRecipeBtn.addEventListener("click", displayRecipeSummaries);
 addItemsBtn.addEventListener("click", displayIngredients);
+clearItemsBtn.addEventListener("click", removeItems);
 
 
