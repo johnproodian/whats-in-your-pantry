@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Document</title>
+    <title>What's in Your Pantry?</title>
 </head>
 <body>
     <header>
-        <section class="hero has-background-grey-light">
+        <section class="hero">
             <div class="hero-body">
                 <p class="title">
                     What's in your pantry?
@@ -25,7 +25,7 @@
     <main>
         <div class="columns is-9 is-centered pt-5" id="column-container">
             <!--chosen ingredients column-->
-            <div class="column is-3 has-background-grey m-3 is-justify-content-flex-start " id="ingredient-items">
+            <div class="column is-3 has-background-grey m-3 is-justify-content-flex-start scroll-bar" id="ingredient-items">
                 <h3 class="title is-3">Ingredients</h3>
                 <div class="card">
                     <div class="card-content">
@@ -37,10 +37,13 @@
                         </div>
                     </div>
                 </div>
-                <button class="button is-light m-2" type="button" id="search-btn">Get recipes!</button>
+                <div class="btn-container has-background-grey">
+                    <button class="button is-light m-2" type="button" id="search-btn">Get recipes!</button>
+                </div>
+                
             </div>
             <!--recipe results column-->
-            <div class="column is-3 has-background-grey-light m-3 is-justify-content-flex-start" id="recipe-results">
+            <div class="column is-3 has-background-grey-light m-3 is-justify-content-flex-start scroll-bar" id="recipe-results">
                 <h3 class="title is-3">Recipe Options</h3>
                 <div class="card">
                     <div class="card-content">
@@ -52,15 +55,8 @@
 
             </div>
             <!--expanded recipe column-->
-            <div class="column is-3 has-background-grey-lighter m-3 is-justify-content-flex-start" id="recipe-expanded">
+            <div class="column is-3 has-background-grey-lighter m-3 is-justify-content-flex-start scroll-bar" id="recipe-expanded">
                 <h3 class="title is-3">Chosen Recipe</h3>
-                <div class="card">
-                    <div class="card-content">
-                        <div class="content" id="full-recipe">
-                            
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
