@@ -7,6 +7,8 @@ var addItemsBtn = document.querySelector("#add-btn");
 var clearItemsBtn = document.querySelector("#clear-btn");
 var recipeTitle = [];  
 var expandedRecipe = ["Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, eveniet ratione beatae iure molestias aperiam, quod officia harum cum dolore reprehenderit accusantium? Magnam quia illum assumenda accusamus enim, voluptatibus cumque."]
+
+var fullRecipe;
 var recipes = [];
 
 
@@ -59,7 +61,7 @@ var displayIngredients = function() {
         var cardDivEl = document.createElement("div");
         cardDivEl.className = "card";
         var cardContentDivEl = document.createElement("div");
-        cardContentDivEl.className = "card-content";
+        cardContentDivEl.className = "card-content my-1";
         var contentDivEl = document.createElement("div");
         contentDivEl.className = "content";
         contentDivEl.textContent = ingredientInputEl;
@@ -224,10 +226,6 @@ var displayRecipeSummaries = function() {
             
         })
         // console.log(recipes);
-    
-    
-    
-    
     
 }
 
