@@ -9,17 +9,24 @@
 #ingredient-items {
     position: relative;
     align-items: center;
+    
 }
 
 #search-btn {
-    position: fixed;
+    position:fixed;
     bottom: -1;
     z-index: 2;
 }
 
-.hero {
-    background-color: #f97316;
-} 
+ .hero {
+    background-color: #cc2900;
+}  
+body{
+    background-color: #fcfbfa;
+}
+div .column {
+    background-color: #cc2900;
+}
 
 .scroll-bar {
     overflow: scroll;
@@ -31,7 +38,7 @@
 
 .btn-container {
     position: fixed;
-    margin-top: 400px;
+    margin-top: 212px;
     z-index: 2;
     background-color: #7a7a7a!important;
     width: 100%;

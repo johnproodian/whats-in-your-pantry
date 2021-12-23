@@ -1,3 +1,85 @@
+// var apiKey = "ddc5bf55d47a481586f8f6a808808cad";
+// var getRecipeBtn = document.querySelector("#search-btn");
+// var addItemsBtn = document.querySelector("#add-btn");
+// var fullRecipe = document.querySelector("#full-recipe");
+
+// var recipeResultsContainer = document.querySelector("#recipe-results");
+
+// var ingredientInputs = [];
+
+// var cardDivEl = document.createElement("div")
+// var cardContentDivEl = document.createElement("div")
+// var contentDivEl = document.createElement("div")
+
+// var recipeSummaryBtns = [];
+
+// var recipeIds = [];
+
+
+// // changed name from 'displayIngredients' to 'ingredientInputHandler'
+// var ingredientInputHandler = function(ingredientInputEl) {
+
+//     // get ingredients to the array to be used
+//     // 
+//     var ingredientInputEl = document.getElementById("ingredient-input").value
+    
+//     ingredientInputs.push(ingredientInputEl);
+//     console.log(ingredientInputs);
+
+//     // moved fetch(api) stuff to getRecipes below
+// }
+
+// /* var getRecipes = function(displayFunction) {
+//     // take ingredient array and convert it to single string
+//     ingredientInputs.toString();
+
+//     // make apiUrl that adds the single string ingredient variable
+//     var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=0195b7fd3cb14afbaa629e0c06b3d5b8&ingredients=" + ingredientInputs;
+    
+//     // fetch api and json the response
+//     fetch(apiUrl)
+//         .then(function(response) {
+//             if (response.ok) {
+//                 response.json()
+//                     // call the displayRecipeSummaries w/ data array
+//                     .then(function(data) {
+//                         displayFunction(data);
+//                     })
+                
+//             } else (
+//                 alert("Didn't work!")
+//             );
+//         }
+//         )    
+// }
+// */
+
+// var getRecipes = function() {
+//     // take ingredient array and convert it to single string
+//     ingredientInputs.toString();
+
+//     // make apiUrl that adds the single string ingredient variable
+//     var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?apiKey=ddc5bf55d47a481586f8f6a808808cad&ingredients=" + ingredientInputs;
+    
+//     // fetch api and json the response
+//     fetch(apiUrl)
+//         .then(function(response) {
+//             if (response.ok) {
+//                 response.json()
+//                     // call the displayRecipeSummaries w/ data array
+//                     .then(function(data) {
+//                         displayRecipeSummaries(data);
+//                     })
+                
+//             } else (
+//                 alert("Didn't work!")
+//             );
+//         }
+//         )
+// }
+
+// Proctor Branch below
+
 var apiKey = "0195b7fd3cb14afbaa629e0c06b3d5b8";
 var getRecipeBtn = document.querySelector("#search-btn");
 var addItemsBtn = document.querySelector("#add-btn");
@@ -23,7 +105,7 @@ var displayIngredients = function(ingredientInputEl) {
     var cardDivEl = document.createElement("div");
     cardDivEl.className = "card";
     var cardContentDivEl = document.createElement("div");
-    cardContentDivEl.className = "card-content";
+    cardContentDivEl.className = "card-content my-1";
     var contentDivEl = document.createElement("div");
     contentDivEl.className = "content";
     contentDivEl.textContent = ingredientInputEl;
@@ -34,10 +116,6 @@ var displayIngredients = function(ingredientInputEl) {
     
     
 };
-
-    cardContentDivEl.appendChild(contentDivEl);
-    cardDivEl.appendChild(cardContentDivEl);
-    expandedRecipeContainer.appendChild(cardDivEl);
 
 var expandRecipe = function() {
     //console.log(this.id);
@@ -55,7 +133,7 @@ var expandRecipe = function() {
     var cardDivEl = document.createElement("div");
     cardDivEl.className = "card";
     var cardContentDivEl = document.createElement("div");
-    cardContentDivEl.className = "card-content";
+    cardContentDivEl.className = "card-content my-1";
     var instructionsEl = document.createElement("p");
     var headerEl = document.createElement("h6");
     headerEl.className = "title", "is-3";
@@ -104,7 +182,7 @@ var displayRecipeSummaries = function() {
         }).then(() => {
             for (i = 0; i < recipes.length; i++) {
                 var cardDivEl = document.createElement("div");
-                cardDivEl.className = "card";
+                cardDivEl.className = "card my-1";
                 var cardContentDivEl = document.createElement("div");
                 cardContentDivEl.className = "card-content";
                 var contentDivEl = document.createElement("a");
