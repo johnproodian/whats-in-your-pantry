@@ -23,7 +23,7 @@ var displayIngredients = function(ingredientInputEl) {
     var cardDivEl = document.createElement("div");
     cardDivEl.className = "card";
     var cardContentDivEl = document.createElement("div");
-    cardContentDivEl.className = "card-content";
+    cardContentDivEl.className = "card-content my-1";
     var contentDivEl = document.createElement("div");
     contentDivEl.className = "content";
     contentDivEl.textContent = ingredientInputEl;
@@ -98,6 +98,36 @@ var expandRecipe = function() {
             cardDivEl.appendChild(cardContentDivEl);
             expandedRecipeContainer.appendChild(cardDivEl);
         })
+    // format the info into the card
+    var cardDivEl = document.createElement("div");
+    cardDivEl.className = "card";
+    var cardContentDivEl = document.createElement("div");
+    cardContentDivEl.className = "card-content my-1";
+    var instructionsEl = document.createElement("p");
+    var headerEl = document.createElement("h6");
+    headerEl.className = "title", "is-3";
+    headerEl.textContent = placeholder;
+    instructionsEl.className = "content";
+    instructionsEl.textContent = expandedRecipe; //instructions
+
+    cardContentDivEl.appendChild(headerEl);
+    cardContentDivEl.appendChild(instructionsEl);
+    cardDivEl.appendChild(cardContentDivEl);
+    expandedRecipeContainer.appendChild(cardDivEl);
+
+      // fetch(apiUrl)
+        // .then(Response => Response.json())
+        // .then(resp => {
+        //     console.log(resp)
+        // })  => is an annonymous function, instead of function()
+
+    // Calls the information in another way
+        // async function recipes() {
+        //     const response = await fetch(apiUrl);
+        //     const resp = await response.json();
+        //     console.log(resp.name);
+        // }
+    
 }
 
 var clearElement = function(element){
@@ -121,7 +151,7 @@ var displayRecipeSummaries = function() {
         }).then(() => {
             for (i = 0; i < recipes.length; i++) {
                 var cardDivEl = document.createElement("div");
-                cardDivEl.className = "card";
+                cardDivEl.className = "card my-1";
                 var cardContentDivEl = document.createElement("div");
                 cardContentDivEl.className = "card-content";
                 var contentDivEl = document.createElement("a");
