@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 // var apiKey = "ddc5bf55d47a481586f8f6a808808cad";
 // var getRecipeBtn = document.querySelector("#search-btn");
 // var addItemsBtn = document.querySelector("#add-btn");
@@ -82,7 +80,6 @@
 
 // Proctor Branch below
 
->>>>>>> 00404a28b0a6de91107114be877113f0dd982212
 var apiKey = "0195b7fd3cb14afbaa629e0c06b3d5b8";
 var getRecipeBtn = document.querySelector("#search-btn");
 var addItemsBtn = document.querySelector("#add-btn");
@@ -109,11 +106,7 @@ var displayIngredients = function(ingredientInputEl) {
     cardDivEl.className = "card";
     var cardContentDivEl = document.createElement("div");
     cardContentDivEl.className = "card-content";
-<<<<<<< HEAD
-    var contentDivEl = document.createElement("div")
-=======
     var contentDivEl = document.createElement("div");
->>>>>>> 00404a28b0a6de91107114be877113f0dd982212
     contentDivEl.className = "content";
     contentDivEl.textContent = ingredientInputEl;
 
@@ -123,10 +116,6 @@ var displayIngredients = function(ingredientInputEl) {
     
     
 };
-<<<<<<< HEAD
-
-=======
->>>>>>> 00404a28b0a6de91107114be877113f0dd982212
 
 var expandRecipe = function() {
     //console.log(this.id);
