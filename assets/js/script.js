@@ -20,19 +20,27 @@ var displayIngredients = function(ingredientInputEl) {
     ingredientInputs.push(ingredientInputEl);
     // console.log(ingredientInputs);
 
-    var cardDivEl = document.createElement("div");
-    cardDivEl.className = "card";
-    var cardContentDivEl = document.createElement("div");
-    cardContentDivEl.className = "card-content my-1";
-    var contentDivEl = document.createElement("div");
-    contentDivEl.className = "content";
-    contentDivEl.textContent = ingredientInputEl;
-
-    cardContentDivEl.appendChild(contentDivEl);
-    cardDivEl.appendChild(cardContentDivEl);
-    ingredientContainer.appendChild(cardDivEl);
+    var recipeApiUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=${ingredientInputs}`
     
     
+    //Pull Title from API
+    fetch(recipeApiUrl)
+        .then(Response => Response.json())
+        .then(data => {
+            if (data.length) {
+                var cardDivEl = document.createElement("div");
+                cardDivEl.className = "card";
+                var cardContentDivEl = document.createElement("div");
+                cardContentDivEl.className = "card-content my-1";
+                var contentDivEl = document.createElement("div");
+                contentDivEl.className = "content";
+                contentDivEl.textContent = ingredientInputEl;
+            
+                cardContentDivEl.appendChild(contentDivEl);
+                cardDivEl.appendChild(cardContentDivEl);
+                ingredientContainer.appendChild(cardDivEl);
+            } 
+        })
 };
 
 var expandRecipe = function() {
@@ -49,7 +57,7 @@ var expandRecipe = function() {
     
 
 
-    var instructionApiUrl = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`
+    instructionApiUrl = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`
     // var ingredientUrl = `https://api.spoonacular.com/recipes/${recipeId}/ingredientWidget.json?apiKey=${apiKey}`
     // var ingredientWidgetUrl = `https://api.spoonacular.com/recipes/${recipeId}/ingredientWidget?apiKey=${apiKey}`
     // console.log(ingredientWidgetUrl)
@@ -144,6 +152,7 @@ var displayRecipeSummaries = function() {
     fetch(recipeApiUrl)
         .then(Response => Response.json())
         .then(data => {
+            apiData = data;
             //console.log(data[0].title);
             for (let i = 0; i < data.length; i++) {
                 recipes.push(data[i]);
