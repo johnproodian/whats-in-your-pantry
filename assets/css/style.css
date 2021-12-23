@@ -9,17 +9,35 @@
 #ingredient-items {
     position: relative;
     align-items: center;
+    
 }
 
 #search-btn {
-    position: fixed;
+    position:fixed;
     bottom: -1;
     z-index: 2;
 }
 
-.hero {
-    background-color: #f97316;
-} 
+ .hero {
+    background: linear-gradient(0.25turn, #ffe602, #f3f161);
+}  
+body{
+    background-color: #fcfbfa;
+}
+/* div .column {
+    background: linear-gradient(to, #F7DC6F, #e6e223, #FCF3CF);
+} */
+#ingredient-items {
+    background: #F7DC6F;
+}
+
+#recipe-results {
+    background-color: #F9E79F;
+}
+
+#recipe-expanded {
+    background-color: #FCF3CF;
+}
 
 .scroll-bar {
     overflow: scroll;
@@ -31,7 +49,7 @@
 
 .btn-container {
     position: fixed;
-    margin-top: 400px;
+    margin-top: 212px;
     z-index: 2;
     background-color: #7a7a7a!important;
     width: 100%;
