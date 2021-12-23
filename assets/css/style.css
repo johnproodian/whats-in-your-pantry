@@ -19,13 +19,24 @@
 }
 
  .hero {
-    background-color: #cc2900;
+    background: linear-gradient(0.25turn, #ffe602, #f3f161);
 }  
 body{
     background-color: #fcfbfa;
 }
-div .column {
-    background-color: #cc2900;
+/* div .column {
+    background: linear-gradient(to, #F7DC6F, #e6e223, #FCF3CF);
+} */
+#ingredient-items {
+    background: #F7DC6F;
+}
+
+#recipe-results {
+    background-color: #F9E79F;
+}
+
+#recipe-expanded {
+    background-color: #FCF3CF;
 }
 
 .scroll-bar {
