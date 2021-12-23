@@ -147,5 +147,3 @@ var displayRecipeSummaries = function() {
 
 getRecipeBtn.addEventListener("click", displayRecipeSummaries);
 addItemsBtn.addEventListener("click", displayIngredients);
-
-
