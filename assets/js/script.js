@@ -1,8 +1,12 @@
+// var storedIngredients = ["apple", "chicken", "egg"];
+// localStorage.setItem("ingredients", JSON.stringify(storedIngredients))
 // var apiKey = "ddc5bf55d47a481586f8f6a808808cad";
-var apiKey = "ddc5bf55d47a481586f8f6a808808cad";
+var apiKey = "0195b7fd3cb14afbaa629e0c06b3d5b8";
 var getRecipeBtn = document.querySelector("#search-btn");
 var addItemsBtn = document.querySelector("#add-btn");
-var fullRecipe;  
+var clearItemsBtn = document.querySelector("#clear-btn");
+var recipeTitle = [];  
+var expandedRecipe = ["Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, eveniet ratione beatae iure molestias aperiam, quod officia harum cum dolore reprehenderit accusantium? Magnam quia illum assumenda accusamus enim, voluptatibus cumque."]
 var recipes = [];
 
 
@@ -11,23 +15,55 @@ var ingredientContainer = document.querySelector("#ingredient-items");
 var expandedRecipeContainer = document.querySelector("#recipe-expanded");
 var ingredientInputs = [];
 
+var getLocalStorage = function() {
+    ingredientInputs = JSON.parse(localStorage.getItem("ingredients"));
+    if (!ingredientInputs) {
+        ingredientInputs = [];
+    } else {
+        displayLocalStorage(ingredientInputs);
+    }
+}
 
-var displayIngredients = function(ingredientInputEl) {
+var displayLocalStorage = function(storedIngredients) {
+    for (i = 0; i < ingredientInputs.length; i++) {
+        var cardDivEl = document.createElement("div");
+        cardDivEl.className = "card";
+        var cardContentDivEl = document.createElement("div");
+        cardContentDivEl.className = "card-content";
+        var contentDivEl = document.createElement("div");
+        contentDivEl.className = "content";
+        contentDivEl.textContent = storedIngredients[i];
+        // var contentXBtn = document.createElement("button");
+        // contentXBtn.className = "x-btn";
+        // contentXBtn.textContent = "X";
 
-    var ingredientInputEl = document.getElementById("ingredient-input").value
-    
-    // console.log(ingredientInputEl);
-    ingredientInputs.push(ingredientInputEl);
-    // console.log(ingredientInputs);
+        // contentDivEl.appendChild(contentXBtn);
+        cardContentDivEl.appendChild(contentDivEl);
+        cardDivEl.appendChild(cardContentDivEl);
+        ingredientContainer.appendChild(cardDivEl);
+    }
+}
 
-    var recipeApiUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=${ingredientInputs}`
+getLocalStorage();
+
+var displayIngredients = function() {
     
+    var ingredientInputEl = document.getElementById("ingredient-input").value.toLowerCase().trim();
     
-    //Pull Title from API
-    fetch(recipeApiUrl)
+    if (!ingredientInputEl) {
+        return;
+    } else if (!ingredientInputs.includes(ingredientInputEl)) {
+        ingredientInputs.push(ingredientInputEl);
+        document.getElementById("ingredient-input").value = "";
+        
+        var recipeApiUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=${ingredientInputs}`
+        
+        //Pull Title from API
+        fetch(recipeApiUrl)
         .then(Response => Response.json())
         .then(data => {
             if (data.length) {
+                localStorage.setItem("ingredients", JSON.stringify(ingredientInputs));
                 var cardDivEl = document.createElement("div");
                 cardDivEl.className = "card";
                 var cardContentDivEl = document.createElement("div");
@@ -35,13 +71,32 @@ var displayIngredients = function(ingredientInputEl) {
                 var contentDivEl = document.createElement("div");
                 contentDivEl.className = "content";
                 contentDivEl.textContent = ingredientInputEl;
-            
+                
                 cardContentDivEl.appendChild(contentDivEl);
                 cardDivEl.appendChild(cardContentDivEl);
                 ingredientContainer.appendChild(cardDivEl);
-            } 
+            } else {
+
+                ingredientInputs.pop();
+            }
         })
+        // contentDivEl.addEventListener("click", removeIngredient);
+    }    
 };
+
+var removeItems = function() {
+    localStorage.clear();
+    location.reload();
+}
+
+// var removeIngredient = function(evt) {
+//     debugger;
+//     if (evt.target.classList.contains("x-btn")) {
+//         var index = ingredientInputs.indexOf("egg");
+//         console.log(index);
+//     }
+
+// }
 
 var expandRecipe = function() {
     clearElement;
@@ -114,7 +169,7 @@ var expandRecipe = function() {
     var instructionsEl = document.createElement("p");
     var headerEl = document.createElement("h6");
     headerEl.className = "title", "is-3";
-    headerEl.textContent = placeholder;
+    // headerEl.textContent = placeholder;
     instructionsEl.className = "content";
     instructionsEl.textContent = expandedRecipe; //instructions
 
@@ -186,3 +241,6 @@ var displayRecipeSummaries = function() {
 
 getRecipeBtn.addEventListener("click", displayRecipeSummaries);
 addItemsBtn.addEventListener("click", displayIngredients);
+clearItemsBtn.addEventListener("click", removeItems);
+
+
