@@ -157,21 +157,7 @@ var expandRecipe = function() {
             expandedRecipeContainer.appendChild(cardDivEl);
         })
     // format the info into the card
-    var cardDivEl = document.createElement("div");
-    cardDivEl.className = "card";
-    var cardContentDivEl = document.createElement("div");
-    cardContentDivEl.className = "card-content my-1";
-    var instructionsEl = document.createElement("p");
-    var headerEl = document.createElement("h6");
-    headerEl.className = "title", "is-3";
-    headerEl.textContent = placeholder;
-    instructionsEl.className = "content";
-    instructionsEl.textContent = expandedRecipe; //instructions
 
-    cardContentDivEl.appendChild(headerEl);
-    cardContentDivEl.appendChild(instructionsEl);
-    cardDivEl.appendChild(cardContentDivEl);
-    expandedRecipeContainer.appendChild(cardDivEl);
 
       // fetch(apiUrl)
         // .then(Response => Response.json())
@@ -209,7 +195,7 @@ var displayRecipeSummaries = function() {
         }).then(() => {
             for (i = 0; i < recipes.length; i++) {
                 var cardDivEl = document.createElement("div");
-                cardDivEl.className = "card my-1";
+                cardDivEl.className = "card my-2";
                 var cardContentDivEl = document.createElement("div");
                 cardContentDivEl.className = "card-content";
                 var contentDivEl = document.createElement("a");
