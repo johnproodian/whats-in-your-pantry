@@ -6,7 +6,7 @@ var getRecipeBtn = document.querySelector("#search-btn");
 var addItemsBtn = document.querySelector("#add-btn");
 var clearItemsBtn = document.querySelector("#clear-btn");
 var recipeTitle = [];  
-var expandedRecipe = ["Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, eveniet ratione beatae iure molestias aperiam, quod officia harum cum dolore reprehenderit accusantium? Magnam quia illum assumenda accusamus enim, voluptatibus cumque."]
+var expandedRecipe = [];
 var recipes = [];
 
 
@@ -53,16 +53,16 @@ var displayIngredients = function() {
     if (!ingredientInputEl) {
         return;
     } else if (!ingredientInputs.includes(ingredientInputEl)) {
-        ingredientInputs.push(ingredientInputEl);
         document.getElementById("ingredient-input").value = "";
         
-        var recipeApiUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=${ingredientInputs}`
+        var recipeApiUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=${ingredientInputEl}`
         
         //Pull Title from API
         fetch(recipeApiUrl)
         .then(Response => Response.json())
         .then(data => {
             if (data.length) {
+                ingredientInputs.push(ingredientInputEl);
                 localStorage.setItem("ingredients", JSON.stringify(ingredientInputs));
                 var cardDivEl = document.createElement("div");
                 cardDivEl.className = "card";
@@ -76,8 +76,10 @@ var displayIngredients = function() {
                 cardDivEl.appendChild(cardContentDivEl);
                 ingredientContainer.appendChild(cardDivEl);
             } else {
+                let note = document.getElementById('alert');
+                note.innerHTML = `The ingredient <b>${ingredientInputEl}</b> is not on the list, please enter another ingredient`;
+                document.getElementById('note').style.display = "block";
 
-                ingredientInputs.pop();
             }
         })
         // contentDivEl.addEventListener("click", removeIngredient);
@@ -242,5 +244,7 @@ var displayRecipeSummaries = function() {
 getRecipeBtn.addEventListener("click", displayRecipeSummaries);
 addItemsBtn.addEventListener("click", displayIngredients);
 clearItemsBtn.addEventListener("click", removeItems);
-
+document.getElementById('delete').addEventListener('click',()=>{
+    document.getElementById('note').style.display = 'none';
+})
 

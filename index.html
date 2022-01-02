@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>What's in Your Pantry?</title>
@@ -13,7 +14,7 @@
         <section class="hero">
             <div class="hero-body">
                 <p class="title has-text-dark">
-                    What's in your pantry?
+                    What's in your pantry? <i class="fas fa-shopping-cart"></i>
                 </p>
                 <p class="subtitle has-text-dark">
                     Let us help you out.
@@ -32,11 +33,15 @@
                         <div class="content my-1">
                             <div class="control" id="add-item-box">
                                 <input class="input" type="text" placeholder="Type an ingredient here!" id="ingredient-input"></input>
-                                <button class="button is-light" type="button" id="add-btn">Add item</button>
-                                <button class="button is-light" type="button" id="clear-btn">Clear item(s)</button>
+                                <button class="button is-warning is-rounded m-2" type="button" id="add-btn">Add item</button>
+                                <button class="button is-warning is-rounded m-2" type="button" id="clear-btn">Clear item(s)</button>
                             </div>
                         </div>
                     </div>
+                    <div class="notification is-danger is-light" id = "note">
+                        <button class="delete" id = "delete"></button>
+                         <span id = "alert"></span>
+                      </div>
                 </div>
                 <div class="btn-container has-background-grey">
                     <button class="button is-warning is-rounded m-2" type="button" id="search-btn">Get recipes!</button>
@@ -47,8 +52,8 @@
                 <h3 class="title is-3 has-text-dark">Recipe Options</h3>
                 <div class="card my-2">
                     <div class="card-content">
+                        
                         <div class="content" id=>
-                            Your recipes will go here!
                         </div>
                     </div>
                 </div>
