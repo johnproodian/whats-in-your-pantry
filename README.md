@@ -23,9 +23,7 @@ THEN I am presented with the full recipe for that title in the third column.
 
 ## Links and Screenshot:
 
-Github: https://github.com/svnday/whats_in_your_pantry
-
-Deployed Page: https://svnday.github.io/whats_in_your_pantry/
+Deployed Page: https://johnproodian.github.io/whats-in-your-pantry/
 
 ![What's in your pantry ss](https://user-images.githubusercontent.com/92322247/147301734-238ce7fa-c555-4719-a16b-c089149483ef.png)
 
