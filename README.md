@@ -1,4 +1,4 @@
-## Whats_in_your_Pantry:
+# What's in Your Pantry?
 
 This repo is for the Hufflepuff group of the UT Austin Bootcamp 2021-2022 winter session (TA - Max Wilets)  
 
